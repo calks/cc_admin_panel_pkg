@@ -26,7 +26,7 @@
 
 						    <tr>
 						        <td style="padding-left:{$level*20+5}px">	
-						        	{$object->title} {if $object->category==0}(раздел){/if}						        		
+						        	{$object->title} {if $object->category==0}({$module->gettext('folder')}){/if}						        		
 						        </td>
 						        <td class="narrow">
 						        	{if $object->open_link != ''}

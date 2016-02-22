@@ -13,7 +13,8 @@
 		
 		protected function createForm($object) {
 			parent::createForm($object);
-			$this->form->addField(coreFormElementsLibrary::get('text', 'new_pass'));			
+			$this->form->addField(coreFormElementsLibrary::get('text', 'new_pass'));
+				
 			$this->form->setValue('roles', array_keys($object->roles));
 		}
 		

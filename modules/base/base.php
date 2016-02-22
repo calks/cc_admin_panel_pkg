@@ -348,7 +348,7 @@
 		protected function taskDelete() {
 			$this->beforeObjectDelete();
 
-			$message = count($this->objects)> 1 ? 'Объекты удалены' : 'Объект удален';
+			$message = count($this->objects)> 1 ? $this->gettext('Objects deleted') : $this->gettext('Object deleted');
 			Application::stackMessage($message);
 			
 			foreach($this->objects as $obj) {				

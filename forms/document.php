@@ -6,7 +6,7 @@
 			$fields = parent::getFieldList($entity);
 			
 			$content_fields = array(
-				'language_id',
+				//'language_id',
 				'title',
 				'content',
 				'meta_title',                    
