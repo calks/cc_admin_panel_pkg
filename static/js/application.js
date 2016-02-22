@@ -19,13 +19,15 @@
 				
 		init: function(){
 			var me = this;
-			jQuery('.message-stack .close').on('click', function(){
+			jQuery('.message-stack .close').on('click', function(event){
 				var alert = jQuery(this).parents('.alert');
 				alert.animate({opacity: 0}, me.animation_speed, function(){
 					alert.slideUp(me.animation_speed, function(){
 						alert.remove();
 					});
-				});			
+				});
+				
+				event.preventDefault();
 
 			});			
 			
