@@ -307,7 +307,7 @@
 			$form_class = coreResourceLibrary::getEffectiveClass('form', $this->getObjectName());
 			if (!$form_class) {
 				$form_class = coreResourceLibrary::getEffectiveClass('form', 'entity_edit');
-				error_reporting(E_ALL); ini_set('display_errors',1);
+				
 				//throw new coreException("No form class found for {$this->getObjectName()} entity");
 				
 			}
