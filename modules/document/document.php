@@ -58,31 +58,6 @@
 		}
 		
 		
-		protected function validateObject($object) {
-			parent::validateObject($object);
-			
-			$link_type = $this->form->getValue('link_type');
-			
-			if ($link_type == 'page_itself') {
-				if (!trim($object->url)) {
-					$this->errors[] = $this->gettext('You should enter URL slug');
-				}
-				else {					
-					$existing = $object->loadToUrl($object->url);
-					if ($existing && $existing->id != $object->id) {
-						$this->errors[] = $this->gettext('This URL slug is already used for another page');
-					}
-				}				
-			}
-			elseif($link_type == 'alias') {
-				if (!trim($object->open_link)) {
-					$this->errors[] = $this->gettext('You should enter Link');
-				}
-			}
-			
-		}
-		
-		
 		protected function taskMove($params, $direction) {
 			$object = $this->objects[0];
 			$table = $object->getTableName();
@@ -121,7 +96,7 @@
 			}
 			
 			
-			$message = $this->gettext('Order changed');// . $direction=='up' ? 'выше' : 'ниже';
+			$message = $this->gettext('Order changed');
 			Application::stackMessage($message);
 			$redirect_url = "/admin/{$this->getName()}?action=list";
 			Redirector::redirect($redirect_url);

@@ -341,7 +341,11 @@
 		}
 		
 		protected function validateObject($object) {
-			$this->errors = array_merge($this->errors, $object->validate());			
+			$this->form->validate();
+			$form_errors = $this->form->getErrors(); 
+			foreach ($form_errors as $field_name=>$field_errors) {
+				$this->errors = array_merge($this->errors, $field_errors);	
+			}
 		}
 		
 		

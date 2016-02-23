@@ -6,7 +6,6 @@
 			$fields = parent::getFieldList($entity);
 			
 			$content_fields = array(
-				//'language_id',
 				'title',
 				'content',
 				'meta_title',                    
@@ -44,8 +43,34 @@
 				'link_type',
 				'url',
 				'open_link'
-			));
+			));		
+		}
+		
+		public function validate() {
+			$link_type = $this->getValue('link_type');
+			
+			if ($link_type == 'page_itself') {
+				$this->makeFieldOptional('open_link');
+				$this->makeFieldReqiured('url');
+				
+				$url = $this->getValue('url');				
+				if ($url) {
+					$document = Application::getEntityInstance('document');
+					$existing = $document->loadToUrl($url);
+					if ($existing && $existing->id != $this->getValue('id')) {
+						$this->setFieldError('url', $this->gettext('This URL slug is already used for another page'));
+					}
+				}
+			}
+			elseif($link_type == 'alias') {
+				$this->makeFieldOptional('url');
+				$this->makeFieldReqiured('open_link');
+			}
+			
+			parent::validate();
+			
 		
 		}
+		
 	
 	}
