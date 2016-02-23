@@ -1,9 +1,6 @@
 
 
 
-
-
-
 			<nav class="navbar navbar-default">
 			
 				<h4 class="navbar-text">{$module->gettext('Page list')}</h4>

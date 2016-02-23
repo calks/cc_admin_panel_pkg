@@ -34,18 +34,6 @@
 			}
 		}
 		
-		protected function createForm($object) {
-			parent::createForm($object);
-			$link_type_options = array(
-				'page_itself' => $object->gettext('page itself'),
-				'alias' => $object->gettext('page alias')
-			);
-			
-			$type_field = coreFormElementsLibrary::get('radio', 'link_type');
-			$type_field->setOptions($link_type_options);
-			$this->form->addField($type_field);
-			$type_field->setValue($object->open_link ? 'alias' : 'page_itself');
-		}
 
 		
 		protected function taskEdit() {

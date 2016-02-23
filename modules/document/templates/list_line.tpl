@@ -25,8 +25,13 @@
 	        				{/if}
 
 						    <tr>
-						        <td style="padding-left:{$level*20+5}px">	
-						        	{$object->title} {if $object->category==0}({$module->gettext('folder')}){/if}						        		
+						        <td style="padding-left:{$level*20+5}px">
+						        	{if $object->category==0}
+						        		<span class="glyphicon glyphicon-folder-open"></span>
+						        	{else}
+						        		<span class="glyphicon glyphicon-file"></span>
+						        	{/if}	
+						        	{$object->title} 						        		
 						        </td>
 						        <td class="narrow">
 						        	{if $object->open_link != ''}
@@ -50,10 +55,10 @@
 						        	{$object->menu_str}
 						        </td>
 						        <td class="narrow">
-									<a href="{$object->edit_link}" class="btn btn-primary btn-xs" title="Редактировать">
+									<a href="{$object->edit_link}" class="btn btn-primary btn-xs" title="{$module->gettext('Edit')}">
 										<span class="glyphicon glyphicon-edit"></span>
 									</a>
-									<a onclick="return confirm('Точно удалить?');" href="{$object->delete_link}" class="btn btn-default btn-xs" title="Удалить">
+									<a onclick="return confirm('{$module->gettext('Really delete?')}');" href="{$object->delete_link}" class="btn btn-default btn-xs" title="{$module->gettext('Delete')}">
 										<span class="glyphicon glyphicon-trash"></span>
 									</a>
 						        </td>

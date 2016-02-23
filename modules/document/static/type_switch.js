@@ -3,9 +3,10 @@
 		
 		
 		function setFieldsVisibility() {
-			var link_type = jQuery('input[name=link_type]:checked').val();			
-			jQuery('.st-form-line.type-alias, .st-form-line.type-page_itself').addClass('hidden');
-			jQuery('.st-form-line.type-' + link_type).removeClass('hidden');
+			var link_type = jQuery('input[name=link_type]:checked').val();	
+			//alert(link_type);
+			jQuery('.type-alias, .type-page_itself').parents('.form-group').addClass('hidden');
+			jQuery('.type-' + link_type).parents('.form-group').removeClass('hidden');
 		}
 		
 		setFieldsVisibility();
