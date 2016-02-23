@@ -5,7 +5,7 @@
 		public function __construct($name) {
 		
 			parent::__construct($name);
-			$this->allowTags('b', 'i', 'img', 'li', 'div', 'h2', 'h3', 'ul', 'ol');
+			$this->allowTags('b', 'i', 'img', 'li', 'div', 'h1', 'h2', 'h3', 'ul', 'ol');
 			$this->enableFeatures('text_align', 'source', 'text_color', 'font_size', 'font_face');
 		
 		}
