@@ -1,6 +1,6 @@
 <?php
 
-	// TODO: Объединить с базовым классом Module и добавить механизм разрешений на action'ы в зависимости от приложения
+
 	class adminPanelPkgBaseModule extends coreBaseModule {
 		
 		protected $action;
@@ -441,7 +441,7 @@
 				$this->normalizeSeq();
 			}
 			
-			$message = 'Объект перемещен ';// . $direction=='up' ? 'выше' : 'ниже';
+			$message = $this->gettext('Order changed');// . $direction=='up' ? 'выше' : 'ниже';
 			Application::stackMessage($message);
 			$redirect_url = "/{$this->getName()}?action=list";
 			$url_addition = $this->url_addition;
