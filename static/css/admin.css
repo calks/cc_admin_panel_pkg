@@ -76,3 +76,7 @@ table.checkbox-collection .checkbox input {
 .date-range-field {
 	display: block;
 }
+
+.pagenav {
+	text-align: right;
+}
