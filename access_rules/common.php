@@ -3,11 +3,11 @@
 	class adminPanelPkgCommonAccessRule extends coreBaseAccessRule {
 	
 	
-		public function accessAllowed($user, $resource, $action) {
+		public function accessAllowed($user, $resource, $action) {			
 			if(!$user) {
 				return $resource->getResourceType() == 'module' && $resource->getName() == 'login';
 			}
-			else {
+			else {				
 				return $user->hasRole('admin');
 			}
 		}

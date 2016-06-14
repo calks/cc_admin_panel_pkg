@@ -2,6 +2,10 @@
 
 	class adminPanelPkgApplicationClass extends coreApplicationClass {
 		
+		protected $module_name;
+		protected $module_params;
+		protected $module;
+				
 		public function render() {
 		
 			Application::loadLibrary('olmi/request');
@@ -15,11 +19,51 @@
 				
 			Router::setDefaultModuleName($user_logged ? 'user' : 'login');
 			
-			Router::route($url);
+			Router::route($url);			
+					
+			$this->module_name = Router::getModuleName();
+			$this->module_params = Router::getModuleParams();
 			
-			$page = Application::getPage();
+			if ($this->module_name) {
+				$this->module = Application::getResourceInstance('module', $this->module_name);
+												
+				if (coreAccessControlLibrary::accessAllowed($user_logged, $this->module)) {																				
+					$content = call_user_func(array($this->module, 'run'), $this->module_params);										
+				}
+				else {
+					Application::stackError(Application::gettext('You should login as admin'));
+					$user_session->logout();
+					Redirector::redirect(Application::getSeoUrl('/login?back=' . Router::getSourceUrl()));
+				}
+			} else {
+				$content = Application::runModule('page404');
+			}
 			
+						
 			$page = Application::getPage();
+			$this->preparePage($page);
+			$this->displayPage($page, $content);
+		
+		}
+		
+		
+		protected function displayPage($page, $content) {
+			$html_head = $page->getHtmlHead();
+			$smarty = Application::getSmarty();
+			
+			$smarty->assign('html_head', $html_head);
+			$smarty->assign('header', Application::getBlock('header'));
+			$smarty->assign('footer', Application::getBlock('footer'));
+			$smarty->assign('content', $content);
+		
+			$template_path = coreResourceLibrary::getTemplatePath('index');
+			
+			$smarty->display($template_path);
+			
+		}
+		
+		protected function preparePage($page) {
+			
 			$page->setTitle(Application::gettext('Management panel'));
 			$page->addMeta(array(
 				'name' => 'viewport',
@@ -48,39 +92,8 @@
 			
 			');
 			
-			$smarty = Application::getSmarty();
-		
-			$module_name = Router::getModuleName();
-			$module_params = Router::getModuleParams();
-			
-			if ($module_name) {
-				$module = Application::getResourceInstance('module', $module_name);
-				if (coreAccessControlLibrary::accessAllowed($user_logged, $module)) {
-					$content = call_user_func(array($module, 'run'), $module_params);
-				}
-				else {
-					Application::stackError(Application::gettext('You should login as admin'));
-					$user_session->logout();
-					Redirector::redirect(Application::getSeoUrl('/login?back=' . Router::getSourceUrl()));
-				}
-			} else {
-				$content = Application::runModule('page404');
-			}
-			
-			$smarty->assign('content', $content);
-			
-		
-			$html_head = $page->getHtmlHead();
-			$smarty->assign('html_head', $html_head);
-			$smarty->assign('header', Application::getBlock('header'));
-			$smarty->assign('footer', Application::getBlock('footer'));
-		
-			$template_path = coreResourceLibrary::getTemplatePath('index');
-			
-			$smarty->display($template_path);	
 		
 		}
-		
 		
 		public function getFrontApplicationName() {
 			return 'front';
