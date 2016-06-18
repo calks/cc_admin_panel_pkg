@@ -8,21 +8,10 @@
 				
 		public function render() {
 		
-			Application::loadLibrary('olmi/request');
-			Application::loadLibrary('core/router');
-		
-						
-			$url = ltrim($_SERVER['REQUEST_URI'], '/');
-		
-			$user_session = Application::getUserSession();
-			$user_logged = $user_session->getUserAccount();
-				
-			Router::setDefaultModuleName($user_logged ? 'user' : 'login');
+			$this->route();
 			
-			Router::route($url);			
-					
-			$this->module_name = Router::getModuleName();
-			$this->module_params = Router::getModuleParams();
+			$user_session = $this->getUserSession();
+			$user_logged = $user_session->getUserAccount();			
 			
 			if ($this->module_name) {
 				$this->module = Application::getResourceInstance('module', $this->module_name);
@@ -31,7 +20,7 @@
 					$content = call_user_func(array($this->module, 'run'), $this->module_params);										
 				}
 				else {
-					Application::stackError(Application::gettext('You should login as admin'));
+					$this->stackError(Application::gettext('You should login as admin'));
 					$user_session->logout();
 					Redirector::redirect(Application::getSeoUrl('/login?back=' . Router::getSourceUrl()));
 				}
@@ -40,12 +29,29 @@
 			}
 			
 						
-			$page = Application::getPage();
-			$this->preparePage($page);
+			$page = $this->getPage();			
 			$this->displayPage($page, $content);
 		
 		}
 		
+		
+		protected function route() {
+			
+			Application::loadLibrary('olmi/request');
+			Application::loadLibrary('core/router');
+								
+			$url = ltrim($_SERVER['REQUEST_URI'], '/');
+
+			$user_logged = $this->getUserSession()->getUserAccount();			
+			
+			Router::setDefaultModuleName($user_logged ? 'user' : 'login');
+			
+			Router::route($url);			
+					
+			$this->module_name = Router::getModuleName();
+			$this->module_params = Router::getModuleParams();
+			
+		}
 		
 		protected function displayPage($page, $content) {
 			$html_head = $page->getHtmlHead();

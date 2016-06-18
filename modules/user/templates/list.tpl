@@ -47,7 +47,7 @@
 					        	<a href="mailto:{$object->email}">{$object->email}</a>
 					        </td>
 					        {*<td class="narrow">
-					        	{if $object->active == 1}{$module->gettext('yes')}{else}{$module->gettext('no')}{/if}
+					        	{if $object->is_active == 1}{$module->gettext('yes')}{else}{$module->gettext('no')}{/if}
 					        </td>*}
 					        <td class="narrow">
 								<a href="{$object->edit_link}" class="btn btn-primary btn-xs" title={$module->gettext('Edit')}>

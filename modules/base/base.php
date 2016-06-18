@@ -209,6 +209,10 @@
 			if (array_key_exists('active', get_object_vars($this->objects[0]))) {			
 				$this->objects[0]->active = 1;	
 			}
+			if (array_key_exists('is_active', get_object_vars($this->objects[0]))) {			
+				$this->objects[0]->is_active = 1;	
+			}
+			
 			$smarty = Application::getSmarty();
 			$edit_template_path = $this->getTemplatePath('edit');
 			$smarty->assign('edit_template_path', coreResourceLibrary::getAbsolutePath($edit_template_path));			

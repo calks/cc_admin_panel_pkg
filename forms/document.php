@@ -10,7 +10,8 @@
 				'content',
 				'meta_title',                    
 				'meta_desc',
-				'meta_key'
+				'meta_key',
+				'language_id'
 			);
 			
 			return array_merge($fields, $content_fields);
