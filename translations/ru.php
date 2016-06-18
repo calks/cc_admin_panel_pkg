@@ -1,6 +1,6 @@
 <?php
 
-	class adminPanelPkgRuTranslation extends coreBaseTranslation {
+	class adminPanelPkgRuTranslation extends langPkgRuTranslation {
 	
 		public function getTranslations() {
 			return array(
@@ -21,6 +21,7 @@
 				),
 				'Required field "%s" is empty' => 'Не заполнено обязательное поле "%s"',
 				'Field "%s" contains malformed value' => 'Поле "%s" содержит значение в неправильном формате'
+				
 				
 			);
 		}
