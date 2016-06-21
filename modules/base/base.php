@@ -303,10 +303,6 @@
 		}
 		
 		protected function createForm($object) {			
-			/*Application::loadLibrary('olmi/form');	
-			$this->form = new BaseForm();			
-			$this->form = $object->make_form($this->form);
-			$this->form->LoadFromObject($object);*/
 
 			$form_class = coreResourceLibrary::getEffectiveClass('form', $this->getObjectName());
 			if (!$form_class) {
