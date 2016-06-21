@@ -1,38 +1,6 @@
 <?php
 
-	class adminPanelPkgApplicationClass extends coreApplicationClass {
-		
-		protected $module_name;
-		protected $module_params;
-		protected $module;
-				
-		public function render() {
-		
-			$this->route();
-			
-			$user_session = $this->getUserSession();
-			$user_logged = $user_session->getUserAccount();			
-			
-			if ($this->module_name) {
-				$this->module = Application::getResourceInstance('module', $this->module_name);
-												
-				if (coreAccessControlLibrary::accessAllowed($user_logged, $this->module)) {																				
-					$content = call_user_func(array($this->module, 'run'), $this->module_params);										
-				}
-				else {
-					$this->stackError(Application::gettext('You should login as admin'));
-					$user_session->logout();
-					Redirector::redirect(Application::getSeoUrl('/login?back=' . Router::getSourceUrl()));
-				}
-			} else {
-				$content = Application::runModule('page404');
-			}
-			
-						
-			$page = $this->getPage();			
-			$this->displayPage($page, $content);
-		
-		}
+	class adminPanelPkgApplicationClass extends coreHttpApplicationClass {
 		
 		
 		protected function route() {
