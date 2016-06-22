@@ -47,6 +47,11 @@
 			));		
 		}
 		
+		protected function getEntityName() {
+			return 'document';
+		}
+
+		
 		public function validate() {
 			$link_type = $this->getValue('link_type');
 			
@@ -56,7 +61,7 @@
 				
 				$url = $this->getValue('url');				
 				if ($url) {
-					$document = Application::getEntityInstance('document');
+					$document = Application::getEntityInstance($this->getEntityName());
 					$existing = $document->loadToUrl($url);
 					if ($existing && $existing->id != $this->getValue('id')) {
 						$this->setFieldError('url', $this->gettext('This URL slug is already used for another page'));

@@ -24,7 +24,15 @@
 					'Показано'
 				),
 				'Required field "%s" is empty' => 'Не заполнено обязательное поле "%s"',
-				'Field "%s" contains malformed value' => 'Поле "%s" содержит значение в неправильном формате'
+				'Field "%s" contains malformed value' => 'Поле "%s" содержит значение в неправильном формате',
+				'This URL slug is already used for another page' => 'Введенный URL уже используется для другой страницы',
+				'Unknown language ID' => 'Передан неизвестный ID языка',
+				'&laquo;%s&raquo; language version successfully deleted for &laquo;%s&raquo; document' => 'Перевод на язык &laquo;%s&raquo; для страницы &laquo;%s&raquo; удален',
+				'Failed to delete &laquo;%s&raquo; language version for &laquo;%s&raquo; document' => 'Не удалось удалить перевод на язык &laquo;%s&raquo; для страницы &laquo;%s&raquo;',
+				'Object saved successfully' => 'Объект сохранен',
+				'Order changed' => 'Порядок изменен',
+				'Settins saved successfully' => 'Настройки сохранены',
+				
 				
 			);
 			

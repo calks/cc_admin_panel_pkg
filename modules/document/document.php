@@ -3,12 +3,25 @@
 	
 	class adminPanelPkgDocumentModule extends adminPanelPkgBaseModule {
 		
+		protected $language_id = CURRENT_LANGUAGE;
+		
 		protected function getObjectName() {
 			return 'document';
 		}
 		
 		public function getPageTitle() {
 			return 'Страницы';
+		}
+		
+		protected function commonLogic($params) {
+			$this->language_id = Request::get('language_id', CURRENT_LANGUAGE);		
+			return parent::commonLogic($params);
+		}
+		
+		
+		protected function beforeListLoad(&$load_params) {
+			$load_params['language_id'] = $this->language_id;
+			return parent::beforeListLoad($load_params);
 		}
 		
 		
@@ -24,18 +37,32 @@
 			return $fields;
 		}
 		
-		protected function afterListLoad($list) {
-			foreach($list as $item) {
-				$item->moveup_link = "/admin/{$this->getName()}?action=moveup&amp;ids[]=$item->id";	
-				$item->movedown_link = "/admin/{$this->getName()}?action=movedown&amp;ids[]=$item->id";
-				$item->edit_link = "/admin/{$this->getName()}?action=edit&amp;ids[]=$item->id";
-				$item->delete_link = "/admin/{$this->getName()}?action=delete&amp;ids[]=$item->id";
-				$this->afterListLoad($item->children);
+		protected function loadObjects() {
+			parent::loadObjects();
+			foreach ($this->objects as $obj) {
+				$obj->language_id = $this->language_id;
 			}
 		}
 		
-
 		
+		protected function createEmptyObjects() {
+			parent::createEmptyObjects();
+			foreach ($this->objects as $obj) {
+				$obj->language_id = $this->language_id;
+			}
+		}
+		
+		
+		protected function afterListLoad($list) {			
+			foreach($list as $item) {
+				$item->moveup_link = Application::getSeoUrl("/{$this->getName()}?action=moveup&amp;ids[]=$item->id");
+				$item->movedown_link = Application::getSeoUrl("/{$this->getName()}?action=movedown&amp;ids[]=$item->id");
+				$item->edit_link = Application::getSeoUrl("/{$this->getName()}?action=edit&amp;ids[]=$item->id");
+				$item->delete_link = Application::getSeoUrl("/{$this->getName()}?action=delete&amp;ids[]=$item->id");
+				$this->afterListLoad($item->children);
+			}
+		}
+				
 		protected function taskEdit() {
 			$page = Application::getPage();
 			$page->addScript($this->getStaticFilePath('/type_switch.js'));
@@ -102,6 +129,38 @@
 			Redirector::redirect($redirect_url);
 						
 		}
+		
+		
+		public function taskDeleteVersion($params = array()) {
+			$language_id = Request::get('language_id');
+			$languages = coreRealWordEntitiesLibrary::getLanguages(null, 'id', 'native_name');
+			
+			$redirect_url = "/{$this->getName()}?action=list";
+			$url_addition = $this->url_addition;
+			if ($this->page > 1) $url_addition .= $url_addition ? "&page=$this->page" : "page=$this->page";
+			if ($url_addition) $redirect_url .= '&' . $url_addition;
+			$redirect_url = Application::getSeoUrl($redirect_url);
+			
+			if (!array_key_exists($language_id, $languages)) {
+				Application::stackError($this->gettext('Unknown language ID'));
+				Redirector::redirect($redirect_url);
+			}
+			
+			$language_name = $languages[$language_id];
+			
+			foreach($this->objects as $obj) {				
+				if ($obj->deleteLanguageVersion($language_id)) {
+					Application::stackMessage($this->gettext('&laquo;%s&raquo; language version successfully deleted for &laquo;%s&raquo; document', $language_name, $obj->title));
+				}
+				else {
+					Application::stackError($this->gettext('Failed to delete &laquo;%s&raquo; language version for &laquo;%s&raquo; document', $language_name, $obj->title));
+				}
+			}
+			
+			Redirector::redirect($redirect_url);
+			
+		}
+		
 		
 	}
 	

@@ -65,6 +65,7 @@
 				$obj = Application::getEntityInstance($this->getObjectName());
 				$obj_table = $obj->getTableName();				
 				$load_params['where'][] = "$obj_table.id IN($ids)";
+				$this->beforeListLoad($load_params);
 				$this->objects = $obj->load_list($load_params);
 
 				$this->addLinks($this->objects);
