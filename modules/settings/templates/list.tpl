@@ -17,13 +17,13 @@
 	    
 		{foreach item=group key=group_name from=$tree}
 			<h3> 
-				{$module->gettext($group_names.$group_name)}
+				{$group_names.$group_name}
 			</h3>
 
 			<div class="body">
 				{foreach item=param key=param_name from=$group}
 					<div class="form-group">
-						<label class="control-label">{$module->gettext($param->param_displayed_name)}</label>
+						<label class="control-label">{$param->param_displayed_name}</label>
 						{$param->renderField()}
 					</div>				
 				{/foreach}
