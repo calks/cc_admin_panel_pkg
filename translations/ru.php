@@ -4,9 +4,8 @@
 	
 		public function getTranslations() {
 			
-			
 			$parent_translations = parent::getTranslations();
-			
+						
 			$translations = array(
 				'You should login as admin' => 'Вы должны войти под учетной записью администратора',
 				'You logged as %s' => 'Вы вошли как %s',
@@ -32,8 +31,17 @@
 				'Object saved successfully' => 'Объект сохранен',
 				'Order changed' => 'Порядок изменен',
 				'Settins saved successfully' => 'Настройки сохранены',
-				
-				
+				'Edit' => 'Изменить',
+				'Delete' => 'Удалить',
+				'Save' => 'Сохранить',
+				'Apply' => 'Применить',				
+				'Reset' => 'Сбросить',
+				'Back' => 'Назад',
+				'Actions' => 'Действия',
+				'Settings' => 'Настройки',
+				'User list' => 'Список пользователей',
+				'Page list' => 'Список страниц',
+				'Add page' => 'Добавить страницу',
 			);
 			
 			

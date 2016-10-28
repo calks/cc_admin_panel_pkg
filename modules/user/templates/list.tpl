@@ -21,11 +21,11 @@
 				<thead>
 					<tr>
 						<th class="narrow">ID</th>
-						<th class="narrow">{$module->gettext('Roles')}</th>
-						<th>{$module->gettext('Name')}</th>
-						<th>{$module->gettext('Email')}</th>
-						{*<th class="narrow">{$module->gettext('Is active')}</th>*}						
-						<th class="narrow">{$module->gettext('Actions')}</th>
+						<th class="narrow">{$entity->gettext('Roles')}</th>
+						<th>{$entity->gettext('Name')}</th>
+						<th>{$entity->gettext('Email')}</th>
+						{*<th class="narrow">{$entity->gettext('Is active')}</th>*}						
+						<th class="narrow">{$entity->gettext('Actions')}</th>
 					</tr>
 				</thead>
 				<tbody>	

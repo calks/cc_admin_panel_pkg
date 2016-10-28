@@ -180,6 +180,7 @@
 			
 			$this->links['group_delete'] = Application::getSeoUrl($group_delete_link);			
 			
+			$smarty->assign('entity', $obj);
 			$smarty->assign('objects', $list);
 			$smarty->assign('pagenav', $this->pagenav);
 			

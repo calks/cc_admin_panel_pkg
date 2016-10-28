@@ -14,16 +14,15 @@
 			
 			<p class="object_count">{$count_str}</p>
 	
-	
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>{$module->gettext('Title')}</th>
+						<th>{$entity->gettext('Title')}</th>
 						<th class="narrow">URL</th>
-						<th class="narrow">{$module->gettext('Ordering')}</th>
-						<th class="narrow">{$module->gettext('Is active')}</th>		
-						<th class="narrow">{$module->gettext('Menu')}</th>
-						<th class="narrow">{$module->gettext('Actions')}</th>
+						<th class="narrow">{$entity->gettext('Ordering')}</th>
+						<th class="narrow">{$entity->gettext('Is active')}</th>		
+						<th class="narrow">{$entity->gettext('Menu')}</th>
+						<th class="narrow">{$entity->gettext('Actions')}</th>
 					</tr>
 				</thead>
 				<tbody>	
