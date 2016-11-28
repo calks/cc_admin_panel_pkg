@@ -22,7 +22,7 @@
 		
 		me.container.children().on('click', '.btn.remove, .btn.move-lower, .btn.move-upper', function(event){			
 			event.preventDefault();
-			console.log('click', event.target);
+			
 			var item = jQuery(this).parents('.item:first');
 			var button = jQuery(event.target);
 			if (button.is('span')) {
@@ -94,9 +94,8 @@
 		
 		changeItemPosition: function(item, diff) {
 			var me = this;
-			console.log('change pos', diff);
-			var sibling = diff>0 ? item.next() : item.prev();
-			console.log(sibling.length);
+			
+			var sibling = diff>0 ? item.next() : item.prev();			
 			if (sibling.length == 0) return;
 			
 			var item_height = item.outerHeight(true);
@@ -142,7 +141,7 @@
 			
 			me.item_list.children().each(function(){
 				var item = jQuery(this);
-				console.log(item_number, items_count);
+				
 				var is_first = item_number==1;
 				var is_last = item_number==items_count;
 				item.find('.number span').html(item_number);
