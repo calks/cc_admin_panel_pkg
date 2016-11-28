@@ -239,7 +239,7 @@
 					$this->beforeObjectSave($object);
 					//$this->saveImages();
 					if (!$this->errors) {												
-						if (in_array('seq', $object->getFields())) {							
+						if ($object->hasField('seq')) {							
 							if (!$object->seq) $object->seq = $this->getSeq();
 						}						
 						if ($object->save()) {
@@ -460,7 +460,7 @@
 		protected function normalizeSeq() {
 			if (!isset($this->objects[0])) return;
 			$object = $this->objects[0];			
-			if (!in_array('seq', $object->getFields())) return;
+			if (!$object->hasField('seq')) return;
 			
 			$table = $object->getTableName();
 			$db = Application::getDb();
@@ -518,6 +518,35 @@
         	Application::stackError("Произошла ошибка");
         	$this->action = 'error';        	        	
         	return parent::terminate();
+        }
+        
+        
+        protected function taskGetEmptyEntityListItem() {
+        	if (!$this->isAjax()) {
+        		return $this->terminate();
+        	}
+
+        	$entity_name = Request::get('entity_name');        	
+        	if (!Application::entityExists($entity_name)) {
+        		Application::stackError($this->gettext('Entity "%s" not found', $entity_name));
+        	}
+        	else {
+        		$entity = Application::getEntityInstance($entity_name);
+        		$field_type = Request::get('field_type');
+        		$field_name = Request::get('field_name');
+        		
+        		$field = coreFormElementsLibrary::get($field_type, $field_name);
+        		$field->setEntityName($entity_name);
+        		
+        		$index = (int)Request::get('index');
+        		
+        		$this->response_data['item_html'] = $field->getItemHtml($entity, $index);  
+        	}
+        	
+        	
+        	
+        	$this->returnResponse();
+        
         }
 		
 		

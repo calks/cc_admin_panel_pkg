@@ -65,12 +65,13 @@ table.checkbox-collection .checkbox input {
 	padding-top: 10px;
 }
 
-.form-group.required .control-label::after {
+.form-group.required > .control-label::after {
 	content: '*';
 	display: inline-block;
 	padding-left: 3px;
 	color: red;
 }
+
 
 
 .date-range-field {
@@ -80,3 +81,75 @@ table.checkbox-collection .checkbox input {
 .pagenav {
 	text-align: right;
 }
+
+
+.entity-list-field {
+	padding: 0;
+}
+
+.entity-list-field a.add-item {
+	float: right;
+	position: relative;
+	top: -25px;
+	margin-bottom: -15px;
+}
+
+
+.entity-list-field .item {
+	display: table;
+	width: 100%;
+	padding: 5px 15px;
+	border-bottom: 2px solid #ddd; 
+}
+
+
+.entity-list-field .item:nth-of-type(2n+1) {
+    background-color: #f9f9f9;
+}
+
+.entity-list-field .item > div {
+	display: table-cell;	
+}
+
+.entity-list-field .item .number {
+	width: 50px;
+}
+
+.entity-list-field .item .number span {
+	display: block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;	
+	font-weight: bold;
+	text-align: center;	
+	background: #ddd;
+	padding: 7px;
+	box-sizing: content-box;
+	border-radius: 20px;
+	position: relative;
+	top: 7px;
+}
+
+
+.entity-list-field .item .actions {
+	width: 140px;
+	text-align: right;	
+}
+
+.entity-list-field .item .actions a {
+	position: relative;
+	top: 7px;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

@@ -22,6 +22,14 @@
 		}
 		
 		protected function displayPage($page, $content) {
+			
+			$module_ajax_endpoint = Application::getSeoUrl("/$this->module_name");
+			$page->addLiteral("
+				<script type=\"text/javascript\">
+					var current_module_ajax_endpoint = '$module_ajax_endpoint';
+				</script>
+			");
+
 			$html_head = $page->getHtmlHead();
 			$smarty = Application::getSmarty();
 			
