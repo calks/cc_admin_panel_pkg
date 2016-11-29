@@ -73,9 +73,8 @@
 				</script>
 			
 			');
-			
-		
 		}
+		
 		
 		public function getFrontApplicationName() {
 			return 'front';
@@ -83,36 +82,46 @@
 		
 		
 		public function getResourceRouting() {
-			
-						
+		
 			$resource_routing = array();
-
-		    $resource_routing['seo_rule'] = array(	 
-				'applications/admin',
-				APP_RESOURCE_CONTAINER_PACKAGES, 
-				APP_RESOURCE_CONTAINER_CORE
-		    );
-		    
-		    
-		    $resource_routing['form_field'] =
-		    $resource_routing['entity'] = array(	 
-				'applications/admin',
-		    	'applications/front',
-				APP_RESOURCE_CONTAINER_PACKAGES, 
-				APP_RESOURCE_CONTAINER_CORE
-		    );
-
-		    
-		    $resource_routing['default'] = array(	 
-				'applications/admin',		    	
-				APP_RESOURCE_CONTAINER_PACKAGES, 
-				APP_RESOURCE_CONTAINER_CORE
-		    );
-		    
 			
-			/*array_unshift($resource_routing['default'], 'applications/admin');
-			array_unshift($resource_routing['default'], 'applications/cli');*/    
-			
+			$front_application_name = $this->getFrontApplicationName();
+		
+			$resource_routing['seo_rule'] = array(
+					'applications/admin',
+					'packages/admin_panel',
+					APP_RESOURCE_CONTAINER_PACKAGES,
+					APP_RESOURCE_CONTAINER_CORE
+			);
+		
+		
+			$resource_routing['form_field'] =
+			$resource_routing['entity'] = array(
+					'applications/admin',
+					"applications/$front_application_name",
+					'packages/admin_panel',
+					APP_RESOURCE_CONTAINER_PACKAGES,
+					APP_RESOURCE_CONTAINER_CORE
+			);
+		
+		
+			$resource_routing['default'] = array(
+					'applications/admin',
+					'packages/admin_panel',
+					APP_RESOURCE_CONTAINER_PACKAGES,
+					APP_RESOURCE_CONTAINER_CORE
+			);
+		
+			$resource_routing['setting_group'] = array(
+					'applications/admin',
+					"applications/$front_application_name",
+					'packages/admin_panel',
+					APP_RESOURCE_CONTAINER_PACKAGES,
+					APP_RESOURCE_CONTAINER_CORE
+			);
+		
+		
+			 
 			return $resource_routing;
 		
 		}
