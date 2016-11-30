@@ -35,11 +35,6 @@
 		
 		public function getAsHtml() {			
 			$value = $this->GetValue();
-			if (!$value) {
-				$value = array(
-					Application::getEntityInstance($this->entity_name)
-				);
-			}
 			
 			$items = array();
 			

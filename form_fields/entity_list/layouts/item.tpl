@@ -8,7 +8,7 @@
 			{$row->render()}
 		</div>	
 		<div class="actions">
-			{if seq_field_available}
+			{if $seq_field_available}
 				<a class="btn btn-s btn-default hidden move-upper" href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
 				<a class="btn btn-s btn-default hidden move-lower" href="#"><span class="glyphicon glyphicon-arrow-down"></span></a>
 			{/if}

@@ -84,7 +84,7 @@
 		
 		
 		protected function getObjectName() {
-			return '';
+			return $this->getResourceName();
 		}
 		
 		protected function getObjectsPerPageCount() {
