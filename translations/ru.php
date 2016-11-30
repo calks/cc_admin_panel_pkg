@@ -29,6 +29,8 @@
 				'&laquo;%s&raquo; language version successfully deleted for &laquo;%s&raquo; document' => 'Перевод на язык &laquo;%s&raquo; для страницы &laquo;%s&raquo; удален',
 				'Failed to delete &laquo;%s&raquo; language version for &laquo;%s&raquo; document' => 'Не удалось удалить перевод на язык &laquo;%s&raquo; для страницы &laquo;%s&raquo;',
 				'Object saved successfully' => 'Объект сохранен',
+				'Object deleted' => 'Объект удален',
+				'Failed to save object' => 'Не удалось сохранить объект',
 				'Order changed' => 'Порядок изменен',
 				'Settins saved successfully' => 'Настройки сохранены',
 				'Edit' => 'Изменить',
