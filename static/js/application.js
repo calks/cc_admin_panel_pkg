@@ -404,6 +404,19 @@
 			});
 			
 			return data;
+		},
+		
+		
+		buildSelectOptionsHtml: function(options, selected_value) {
+			var out = '';
+			
+			jQuery.each(options, function(value, caption){
+				var selected = value==selected_value ? ' selected="selected"' : '';
+				out += '<option'+selected+' value="'+value+'">'+caption+'</option>';
+			});
+			
+			return out;
+			
 		}
 
 			
