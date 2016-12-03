@@ -1,8 +1,8 @@
 <?php
 
 	class adminPanelPkgSelectFormField extends coreSelectFormField {
-		public function getAsHtml() {
+		public function render() {
 			$this->addClass('form-control');
-			return parent::getAsHtml();
+			return parent::render();
 		}
 	}

@@ -25,7 +25,7 @@
 		}
 		
 		
-		public function getAsHtml() {
+		public function render() {
 			$value = $this->GetValue();
 			$row = $this->getRow($value);
 						

@@ -33,7 +33,7 @@
 		}
 		
 		
-		public function getAsHtml() {			
+		public function render() {			
 			$value = $this->GetValue();
 			
 			$items = array();

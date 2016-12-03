@@ -1,8 +1,8 @@
 <?php
 
 	class adminPanelPkgPasswordFormField extends corePasswordFormField {
-		public function getAsHtml() {
+		public function render() {
 			$this->addClass('form-control');
-			return parent::getAsHtml();
+			return parent::render();
 		}		
 	}

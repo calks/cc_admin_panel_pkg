@@ -2,7 +2,7 @@
 
 	class adminPanelPkgFixedValueFormField extends coreFixedValueFormField {
 	
-		public function getAsHtml() {
+		public function render() {
 			$this->addClass('form-control-static');
 			$attr_string = $this->getAttributesString();			
 			return "
