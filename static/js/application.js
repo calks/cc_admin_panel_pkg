@@ -7,6 +7,7 @@
 		messages_container: null,
 		templates: {},
 		modules: {},
+		handlers: {},
 		
 		sessionStorageAvailable: function() {
 			try {
@@ -57,6 +58,24 @@
 		},
 		
 		
+		registerHandler: function(event, callback){
+			var me = this;
+			if (typeof(me.handlers[event]) == 'undefined') {
+				me.handlers[event] = [];
+			}
+			me.handlers[event].push(callback);
+		},
+		
+		
+		callHandlers: function(event, params){
+			var me = this;
+			var handlers = typeof(me.handlers[event]) != 'undefined' ? me.handlers[event] : [];			
+			for(var i in handlers) {
+				handlers[i].apply(me, params);
+			}
+		},
+
+		
 		ajaxRequest: function(ajax_url, request_type, params, success_callback, error_callback, async) {
 			var me = this;
 			jQuery.ajax({
@@ -81,7 +100,8 @@
 					
 					if (status=='success' || status=='ok') {
 						if (typeof(success_callback)=='function') {							 
-							success_callback(response);							
+							success_callback(response);
+							me.callHandlers('ajax_success', [response]);
 						}
 					} else {
 						if (typeof(error_callback)=='function') {
