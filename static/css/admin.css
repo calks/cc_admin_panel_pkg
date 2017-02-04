@@ -72,7 +72,10 @@ table.checkbox-collection .checkbox input {
 	color: red;
 }
 
-
+.form-group .fill-in-tip {
+	display: block;
+	font-style: italic;
+}
 
 .date-range-field {
 	display: block;
