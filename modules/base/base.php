@@ -65,7 +65,7 @@
 				$obj = Application::getEntityInstance($this->getObjectName());
 				$obj_table = $obj->getTableName();				
 				$load_params['where'][] = "$obj_table.id IN($ids)";
-				$this->beforeListLoad($load_params);
+				$this->beforeListLoad($load_params);				
 				$this->objects = $obj->load_list($load_params);
 
 				$this->addLinks($this->objects);
@@ -404,16 +404,19 @@
 			return $this->taskMove($params, 'up');
 		}
 		
-		protected function taskMove($params, $direction) {
+		protected function taskMove($params, $direction) {			
 			$object = $this->objects[0];
 			$table = $object->getTableName();
 			$db = Application::getDb();
 			$extra_condition = $this->neighbourExtraCondition();
 			if ($extra_condition) $extra_condition = " AND $extra_condition ";
+			
+			$object_seq = (int)$object->seq;
+			
 			if($direction=='up') {
 				$sql = "
 					SELECT id, seq FROM $table					
-					WHERE seq<$object->seq
+					WHERE seq<$object_seq
 					$extra_condition
 					ORDER BY seq DESC
 					LIMIT 1
@@ -422,7 +425,7 @@
 			elseif($direction=='down') {
 				$sql = "
 					SELECT id, seq FROM $table					
-					WHERE seq>$object->seq
+					WHERE seq>$object_seq
 					$extra_condition
 					ORDER BY seq ASC
 					LIMIT 1
@@ -433,7 +436,7 @@
 			$neighbour = $db->executeSelectObject($sql);
 			if ($neighbour) {
 				$db->execute("
-					UPDATE $table SET seq=$object->seq
+					UPDATE $table SET seq=$object_seq
 					WHERE id=$neighbour->id
 				");			
 				$db->execute("
