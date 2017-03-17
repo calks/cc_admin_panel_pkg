@@ -434,6 +434,7 @@
 			else return $this->terminate();
 			//die($sql);
 			$neighbour = $db->executeSelectObject($sql);
+			
 			if ($neighbour) {
 				$db->execute("
 					UPDATE $table SET seq=$object_seq
@@ -442,9 +443,10 @@
 				$db->execute("
 					UPDATE $table SET seq=$neighbour->seq
 					WHERE id=$object->id
-				");
-				$this->normalizeSeq();
+				");				
 			}
+			
+			$this->normalizeSeq();
 			
 			$message = $this->gettext('Order changed');// . $direction=='up' ? 'выше' : 'ниже';
 			Application::stackMessage($message);
