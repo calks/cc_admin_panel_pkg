@@ -87,7 +87,7 @@
 			
 			$front_application_name = $this->getFrontApplicationName();
 		
-			$resource_routing['seo_rule'] = array(
+			$resource_routing['routing_rule'] = array(
 					'applications/admin',
 					'packages/admin_panel',
 					APP_RESOURCE_CONTAINER_PACKAGES,
