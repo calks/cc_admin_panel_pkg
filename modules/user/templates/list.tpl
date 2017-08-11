@@ -24,7 +24,7 @@
 						<th class="narrow">{$entity->gettext('Roles')}</th>
 						<th>{$entity->gettext('Name')}</th>
 						<th>{$entity->gettext('Email')}</th>
-						{*<th class="narrow">{$entity->gettext('Is active')}</th>*}						
+						<th class="narrow">{$entity->gettext('Is active')}</th>						
 						<th class="narrow">{$entity->gettext('Actions')}</th>
 					</tr>
 				</thead>
@@ -46,16 +46,18 @@
 					        <td>
 					        	<a href="mailto:{$object->email}">{$object->email}</a>
 					        </td>
-					        {*<td class="narrow">
+					        <td class="narrow">
 					        	{if $object->is_active == 1}{$module->gettext('yes')}{else}{$module->gettext('no')}{/if}
-					        </td>*}
+					        </td>
 					        <td class="narrow">
 								<a href="{$object->edit_link}" class="btn btn-primary btn-xs" title={$module->gettext('Edit')}>
 									<span class="glyphicon glyphicon-edit"></span>
 								</a>
-								<a onclick="return confirm('{$module->gettext('Really delete?')}');" href="{$object->delete_link}" class="btn btn-default btn-xs" title="{$module->gettext('Delete')}">
-									<span class="glyphicon glyphicon-trash"></span>
-								</a>
+								{if $logged_user_id != $object->id}
+									<a onclick="return confirm('{$module->gettext('Really delete?')}');" href="{$object->delete_link}" class="btn btn-default btn-xs" title="{$module->gettext('Delete')}">
+										<span class="glyphicon glyphicon-trash"></span>
+									</a>
+								{/if}	
 					        </td>
 					    </tr>
 			    	{/foreach}
