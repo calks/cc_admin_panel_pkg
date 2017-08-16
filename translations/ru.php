@@ -46,7 +46,8 @@
 				'Add page' => 'Добавить страницу',
 				'yes' => 'да',
 				'no' => 'нет',
-				'Email is used by another user' => 'Под введенным Email уже зарегистрирован другой пользователь'
+				'Email is used by another user' => 'Под введенным Email уже зарегистрирован другой пользователь',
+				'Really delete?' => 'Точно удалить?'
 			);
 			
 			
