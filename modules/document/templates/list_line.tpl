@@ -49,7 +49,11 @@
 						        </td>
 						        
 						        <td class="narrow">
-						        	{if $object->is_active}{$module->gettext('yes')}{else}{$module->gettext('no')}{/if}
+						        	{if $object->is_active}
+						        		<span class="glyphicon glyphicon-ok"></span>
+						        	{else}
+						        								        	
+						        	{/if}
 						        </td>
 						        <td class="narrow">						        
 						        	{$object->menu_str}
