@@ -3,7 +3,7 @@
 
 {strip}
 					<div class="pagenav navbar">
-						<span class="pages navbar-text navbar-left">Page {$current_page} of {$total_pages}</span>
+						<span class="pages navbar-text navbar-left">{$block->gettext('Page %s of %s', $current_page, $total_pages)}</span>
 						{foreach item=page from=$page_links}
 							{if $page->type!='prev' && $page->type!='next'}
 								{if $page->disabled}

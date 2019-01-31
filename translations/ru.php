@@ -47,7 +47,8 @@
 				'yes' => 'да',
 				'no' => 'нет',
 				'Email is used by another user' => 'Под введенным Email уже зарегистрирован другой пользователь',
-				'Really delete?' => 'Точно удалить?'
+				'Really delete?' => 'Точно удалить?',
+				'Page %s of %s' => 'Страница %s из %s'
 			);
 			
 			
