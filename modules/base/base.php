@@ -22,28 +22,29 @@
 			$this->commonLogic($params);
 			
 			$terminated = $this->action == 'error';
-			if ($terminated) return;
+			if (!$terminated) {
 			
-			$this->action = Request::get('action', 'list');
-			$this->ids = Request::get('ids');
-			$this->errors = array();
-			$this->page = (int)Request::get('page');
-
-						
-			if (!$this->ids) $this->ids = array();
-			if ($id = (int)Request::get('id')) $this->ids[] = $id;
-			
-			foreach ($this->ids as &$id) $id = (int)$id;
-			
-			$method_name = 'task' . ucfirst(coreNameUtilsLibrary::underscoredToCamel($this->action));
-			if (!method_exists($this, $method_name)) return $this->terminate();			
-			
-			$this->loadObjects();
-			
-			call_user_func(array($this, $method_name), $params);
-			
-			foreach ($this->errors as $e) {
-				Application::stackError($e);
+				$this->action = Request::get('action', 'list');
+				$this->ids = Request::get('ids');
+				$this->errors = array();
+				$this->page = (int)Request::get('page');
+	
+							
+				if (!$this->ids) $this->ids = array();
+				if ($id = (int)Request::get('id')) $this->ids[] = $id;
+				
+				foreach ($this->ids as &$id) $id = (int)$id;
+				
+				$method_name = 'task' . ucfirst(coreNameUtilsLibrary::underscoredToCamel($this->action));
+				if (!method_exists($this, $method_name)) return $this->terminate();			
+				
+				$this->loadObjects();
+				
+				call_user_func(array($this, $method_name), $params);
+				
+				foreach ($this->errors as $e) {
+					Application::stackError($e);
+				}
 			}
 			
 			$smarty = Application::getSmarty();
