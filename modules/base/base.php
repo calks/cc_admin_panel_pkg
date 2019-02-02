@@ -322,8 +322,12 @@
 			$action_field->setValue($this->action);
 			$this->form->addField($action_field);
 						
-			$form_action = "/{$this->getName()}";
-			if ($this->page > 1) $form_action .= "?page=$this->page";			
+			
+			$url_addition = $this->url_addition;
+			if ($this->page > 1) $url_addition .= $url_addition ? "&page=$this->page" : "page=$this->page"; 
+			$url_addition = $url_addition ? '?' . str_replace('&', '&amp;', $url_addition) : '';
+			
+			$form_action = "/{$this->getName()}$url_addition";
 			$form_action = Application::getSeoUrl($form_action);			
 			$this->form->setAction($form_action);
 			
