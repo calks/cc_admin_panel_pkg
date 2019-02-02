@@ -287,8 +287,8 @@
 			
 			
 			$back_link = "/{$this->getName()}?action=list" . $url_addition;
-			$back_link = Application::getSeoUrl($back_link);						
-			$smarty->assign('back_link', $back_link);
+			$back_link = Application::getSeoUrl($back_link);			
+			$this->form->setBackLink($back_link);
 			
 			$this->links['back'] = $back_link;
 
