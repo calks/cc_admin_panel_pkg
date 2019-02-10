@@ -7,7 +7,7 @@
 			
 			$tree = coreSettingsLibrary::getUpToDateTree();
 					
-			if (Request::isPostMethod()) {
+			if (coreRequestLibrary::isPostMethod()) {
 				coreSettingsLibrary::updateTreeFromPost();
 				$errors = coreSettingsLibrary::getErrors();
 				if (!$errors) {

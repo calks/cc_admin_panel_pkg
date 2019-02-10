@@ -15,7 +15,7 @@
 		
 		
 		public function SetFromPost($POST) {
-			$post_data = Request::getFieldValue($this->field_name, $POST);
+			$post_data = coreRequestLibrary::getFieldValue($this->field_name, $POST);
 			
 			$value = array();
 			

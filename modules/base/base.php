@@ -24,14 +24,14 @@
 			$terminated = $this->action == 'error';
 			if (!$terminated) {
 			
-				$this->action = Request::get('action', 'list');
-				$this->ids = Request::get('ids');
+				$this->action = coreRequestLibrary::get('action', 'list');
+				$this->ids = coreRequestLibrary::get('ids');
 				$this->errors = array();
-				$this->page = (int)Request::get('page');
+				$this->page = (int)coreRequestLibrary::get('page');
 	
 							
 				if (!$this->ids) $this->ids = array();
-				if ($id = (int)Request::get('id')) $this->ids[] = $id;
+				if ($id = (int)coreRequestLibrary::get('id')) $this->ids[] = $id;
 				
 				foreach ($this->ids as &$id) $id = (int)$id;
 				
@@ -230,7 +230,7 @@
 			
 			$this->createForm($object);
 			
-			if(Request::isPostMethod()) {
+			if(coreRequestLibrary::isPostMethod()) {
 				
 				$this->updateObjectFromRequest($object);
 				
@@ -248,7 +248,7 @@
 							$this->afterObjectSave($object);
 							//if ($this->action == 'add') $this->renameNewObjectImageDir($object->id);
 							
-							$apply_pressed = (bool)Request::get('apply');
+							$apply_pressed = (bool)coreRequestLibrary::get('apply');
 							if ($apply_pressed) {
 								$redirect_url = "/{$this->getName()}?action=edit&ids[]=$object->id";	
 							}
@@ -536,19 +536,19 @@
         		return $this->terminate();
         	}
 
-        	$entity_name = Request::get('entity_name');        	
+        	$entity_name = coreRequestLibrary::get('entity_name');        	
         	if (!Application::entityExists($entity_name)) {
         		Application::stackError($this->gettext('Entity "%s" not found', $entity_name));
         	}
         	else {
         		$entity = Application::getEntityInstance($entity_name);
-        		$field_type = Request::get('field_type');
-        		$field_name = Request::get('field_name');
+        		$field_type = coreRequestLibrary::get('field_type');
+        		$field_name = coreRequestLibrary::get('field_name');
         		
         		$field = coreFormElementsLibrary::get($field_type, $field_name);
         		$field->setEntityName($entity_name);
         		
-        		$index = (int)Request::get('index');
+        		$index = (int)coreRequestLibrary::get('index');
         		
         		$this->response_data['item_html'] = $field->getItemHtml($entity, $index);  
         	}

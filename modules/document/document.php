@@ -14,7 +14,7 @@
 		}
 		
 		protected function commonLogic($params) {
-			$this->language_id = Request::get('language_id', CURRENT_LANGUAGE);		
+			$this->language_id = coreRequestLibrary::get('language_id', CURRENT_LANGUAGE);		
 			return parent::commonLogic($params);
 		}
 		
@@ -132,7 +132,7 @@
 		
 		
 		public function taskDeleteVersion($params = array()) {
-			$language_id = Request::get('language_id');
+			$language_id = coreRequestLibrary::get('language_id');
 			$languages = coreRealWordEntitiesLibrary::getLanguages(null, 'id', 'native_name');
 			
 			$redirect_url = "/{$this->getName()}?action=list";

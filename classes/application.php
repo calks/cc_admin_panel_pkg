@@ -4,8 +4,7 @@
 		
 		
 		protected function route() {
-			
-			Application::loadLibrary('olmi/request');
+
 			Application::loadLibrary('core/router');
 								
 			$url = ltrim($_SERVER['REQUEST_URI'], '/');
