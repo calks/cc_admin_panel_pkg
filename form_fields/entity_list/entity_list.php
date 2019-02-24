@@ -4,6 +4,7 @@
 		
 		protected $entity_name;
 		protected $row_errors;
+		protected $ajax_endpoint;
 		
 		public function __construct($field_name) {
 			parent::__construct($field_name);
@@ -54,6 +55,7 @@
 			$smarty->assign('field_type', $this->getResourceName());
 			$smarty->assign('field_name', $this->getFieldName());
 			$smarty->assign('entity_name', $this->getEntityName());
+			$smarty->assign('ajax_endpoint', $this->ajax_endpoint);
 			
 			return $smarty->fetch($list_template_path);
 		}

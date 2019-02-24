@@ -16,12 +16,16 @@
 	
 	<script type="text/javascript">
 		jQuery(document).ready(function(){
-			return new EntityListField(
+			var elf = new EntityListField(
 				'#{$field_id}', 
 				'{$field_type}', 
 				'{$field_name}',
 				'{$entity_name}'
 			);
+
+			{if $ajax_endpoint}
+				elf.setAjaxEndpoint('{$ajax_endpoint}');
+			{/if}
 		});
 	</script>
 	

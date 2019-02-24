@@ -2,6 +2,9 @@
 
 	function EntityListField(container_selector, field_type, field_name, entity_name) {
 		var me = this;
+		
+		me.setAjaxEndpoint(current_module_ajax_endpoint);
+		
 		me.container = jQuery(container_selector);
 		if (me.container.length == 0) {
 			throw 'EntityListField: container ' + container_selector + ' not found';
@@ -49,14 +52,20 @@
 	EntityListField.prototype = {
 			
 		animation_speed: 300,
+		ajax_endpoint: null,
 			
+		setAjaxEndpoint: function(ajax_endpoint) {
+			var me = this;
+			me.ajax_endpoint = ajax_endpoint;
+		},
+		
 		addItem: function() {
 			var me = this;
 			
 			App.blockUI();
 			
 			App.ajaxRequest(
-				current_module_ajax_endpoint,
+				me.ajax_endpoint,
 				'post',
 				{
 					ajax: 1,
